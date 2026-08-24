@@ -7,7 +7,7 @@ def home():
 
 @app.route('/sobre')
 def sobre():
-    return 'Sobre o sistema'
+    return render_template('sobre.html')
 
 
 
