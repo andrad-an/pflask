@@ -28,7 +28,14 @@ def lista_alunos():
 
 @app.route('/professor')
 def lista_professor():
-    return render_template('professor/lista.html')
+    lista_professores = [
+        (1, "Carlos Alberto Silva", "Matemática", "THE"),
+        (2, "Fernanda Maria Sousa", "Português", "THE"),
+        (3, "Roberto Gomes Castro", "História", "THE"),
+        (4, "Patricia Lima Mendes", "Geografia", "THE"),
+        (5, "Ricardo Oliveira Paz", "Física", "THE"),
+    ]
+    return render_template('professor/lista.html', lista=lista_professores)
 
 @app.route('/ajuda')
 def ajuda():
