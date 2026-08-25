@@ -30,5 +30,9 @@ def lista_alunos():
 def lista_professor():
     return render_template('professor/lista.html')
 
+@app.route('/ajuda')
+def ajuda():
+    return render_template('dashboard/ajuda.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
