@@ -33,6 +33,9 @@ def lista_professor():
 @app.route('/ajuda')
 def ajuda():
     return render_template('dashboard/ajuda.html')
+@app.route('/contato')
+def contato():
+    return render_template('dashboard/contato.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
