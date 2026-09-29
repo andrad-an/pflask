@@ -1,0 +1,32 @@
+{% include 'dashboard/cabecalho.html' %}
+
+<h1 class="mb-4">Lista de Turmas</h1>
+
+<div class="row">
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>semestre</th>
+        <th>professor_id</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in lista %}
+      <tr>
+        <td>{{ item[0] }}</td> <!-- ID -->
+        <td>{{ item[1] }}</td> <!-- Semestre -->
+        <td>{{ item[2] }}</td> <!-- Professor ID -->
+        <td>
+          <a href="/turma/editar/{{ item[0] }}" class="btn btn-primary btn-sm">Editar</a>
+          <a href="/turma/remover/{{ item[0] }}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja remover este registro?');">
+            Remover
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% include 'dashboard/rodape.html' %}

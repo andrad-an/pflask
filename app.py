@@ -1,6 +1,13 @@
 from flask import Flask, render_template
+import sqlite3
+from dao.db_config import get_connection
+from dao.aluno_dao import AlunoDAO
+from dao.professor_dao import ProfessorDAO
+from dao.turma_dao import TurmaDAO
 
 app = Flask(__name__)
+
+DB_PATH = 'banco_escola.db'
 
 @app.route('/')
 def home():
@@ -10,39 +17,35 @@ def home():
 def sobre():
     return render_template('dashboard/sobre.html')
 
+@app.route('/aluno')
 @app.route('/alunos')
 def lista_alunos():
-    lista = [
-        (1, "Abel Nunes Vieira", 18, "THE"),
-        (2, "Beatriz Lima Vasconcelos", 19, "THE"),
-        (3, "Carlos Eduardo de Sousa", 20, "THE"),
-        (4, "Daniela Fontes Carvalho", 18, "THE"),
-        (5, "Gabriel Henrique Mesquita", 21, "THE"),
-        (6, "Isabela Cristina Nogueira", 19, "THE"),
-        (7, "Lucas Gabriel Ferreira", 22, "THE"),
-        (8, "Mariana Rocha Albuquerque", 18, "THE"),
-        (9, "Mateus Vinícius Ribeiro", 20, "THE"),
-        (10, "Kelson Andre Veloso Moura Paiva", 18, "THE"),
-    ]
+    dao = AlunoDAO()
+    lista = dao.listar()
     return render_template('alunos/lista.html', lista=lista)
 
 @app.route('/professor')
 def lista_professor():
-    lista_professores = [
-        (1, "Carlos Alberto Silva", "Matemática", "THE"),
-        (2, "Fernanda Maria Sousa", "Português", "THE"),
-        (3, "Roberto Gomes Castro", "História", "THE"),
-        (4, "Patricia Lima Mendes", "Geografia", "THE"),
-        (5, "Ricardo Oliveira Paz", "Física", "THE"),
-    ]
-    return render_template('professor/lista.html', lista=lista_professores)
+    dao = ProfessorDAO()
+    lista = dao.listar()
+    return render_template('professor/lista.html', lista=lista)
+    
+    return render_template('professor/lista.html', lista=lista)
 
 @app.route('/ajuda')
 def ajuda():
     return render_template('dashboard/ajuda.html')
+
 @app.route('/contato')
 def contato():
     return render_template('dashboard/contato.html')
+
+@app.route('/turma')
+def turma():
+    dao = TurmaDAO()
+    lista = dao.listar()
+    return render_template('turma/lista.html', lista=lista)
+    return render_template('turma/lista.html', lista=lista)
 
 if __name__ == '__main__':
     app.run(debug=True)
