@@ -30,7 +30,6 @@ def lista_professor():
     lista = dao.listar()
     return render_template('professor/lista.html', lista=lista)
     
-    return render_template('professor/lista.html', lista=lista)
 
 @app.route('/ajuda')
 def ajuda():
@@ -43,9 +42,10 @@ def contato():
 @app.route('/turma')
 def turma():
     dao = TurmaDAO()
+    
     lista = dao.listar()
     return render_template('turma/lista.html', lista=lista)
-    return render_template('turma/lista.html', lista=lista)
+   
 
 if __name__ == '__main__':
     app.run(debug=True)
