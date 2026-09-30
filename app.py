@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 import sqlite3
+from dao.curso_dao import CursoDAO
 from dao.db_config import get_connection
 from dao.aluno_dao import AlunoDAO
 from dao.professor_dao import ProfessorDAO
@@ -45,7 +46,12 @@ def turma():
     
     lista = dao.listar()
     return render_template('turma/lista.html', lista=lista)
-   
+
+@app.route('/curso')
+def curso():
+    dao = CursoDAO()
+    lista = dao.listar()
+    return render_template('curso/lista.html', lista=lista)
 
 if __name__ == '__main__':
     app.run(debug=True)
