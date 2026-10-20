@@ -1,0 +1,15 @@
+{% include 'dashboard/cabecalho.html' %}
+
+<h1 class="mb-4">Dados do Cadastro</h1>
+
+<div class="card p-4 w-50">
+  <p><strong>Nome:</strong> {{ dados.nome }}</p>
+  <p><strong>Data de Nascimento:</strong> {{ dados.data_nascimento }}</p>
+  <p><strong>CPF:</strong> {{ dados.cpf }}</p>
+  <p><strong>Nome da Mãe:</strong> {{ dados.nome_mae }}</p>
+</div>
+
+<br>
+<a href="/desafio1" class="btn btn-secondary">Voltar ao Formulário</a>
+
+{% include 'dashboard/rodape.html' %}
