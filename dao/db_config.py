@@ -1,8 +1,10 @@
-import sqlite3
+import psycopg2
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DB_PATH = os.path.join(BASE_DIR, 'banco_escola.db')
+DATABASE_URL = os.getenv(
+    'POSTGRES_URL',
+    'postgresql://neondb_owner:npg_G71wvbmUBSgq@ep-dry-waterfall-b8g3dy56-pooler.c-14.us-east-1.aws.neon.tech/neondb?sslmode=require'
+)
 
 def get_connection():
-    return sqlite3.connect(DB_PATH)
+    return psycopg2.connect(DATABASE_URL)
