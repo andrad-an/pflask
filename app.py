@@ -166,7 +166,7 @@ def remover_matricula(id):
 
 
 
-@app.route('/saudacao1/<nome>')
+@app.route('/saudacao/<nome>')
 def saudacao1(nome):
     return render_template('saudacao/saudacao.html', valor_recebido=nome)
 
@@ -182,7 +182,7 @@ def login():
     dados = f"Usuário: {usuario}, Senha: {senha}"
     return render_template('saudacao/saudacao.html', valor_recebido=dados)
 
-@app.route('/desafio1', methods=['GET', 'POST'])
+@app.route('/desafio', methods=['GET', 'POST'])
 def desafio1():
     if request.method == 'POST':
         dados_cadastro = {
