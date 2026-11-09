@@ -6,7 +6,6 @@ from dao.curso_dao import CursoDAO
 from dao.turma_dao import TurmaDAO
 
 app = Flask(__name__)
-
 app.secret_key = "uma_chave_muito_secreta_e_unica"
 
 
@@ -27,6 +26,7 @@ def contato():
     return render_template('dashboard/contato.html')
 
 
+
 @app.route('/aluno')
 @app.route('/alunos')
 def lista_alunos():
@@ -36,9 +36,16 @@ def lista_alunos():
 
 @app.route('/alunos/form')
 def form_aluno():
-    return render_template('aluno/form.html', aluno=None)
+    return render_template('alunos/form.html', aluno=None)
+
+@app.route('/alunos/editar/<int:id>')
+def editar_aluno(id):
+    dao = AlunoDAO()
+    aluno = dao.buscar_por_id(id)
+    return render_template('alunos/form.html', aluno=aluno)
 
 @app.route('/alunos/salvar/', methods=['POST'])
+@app.route('/alunos/salvar/<int:id>', methods=['POST'])
 def salvar_aluno(id=None):
     nome = request.form['nome']
     idade = request.form['idade']
@@ -52,6 +59,16 @@ def salvar_aluno(id=None):
     else:
         flash(result["mensagem"], "danger")
 
+    return redirect('/aluno')
+
+@app.route('/alunos/remover/<int:id>')
+def remover_aluno(id):
+    dao = AlunoDAO()
+    resultado = dao.remover(id)
+    if resultado["status"] == "ok":
+        flash("Registro removido com sucesso!", "success")
+    else:
+        flash(resultado["mensagem"], "danger")
     return redirect('/alunos')
 
 
@@ -75,6 +92,7 @@ def curso():
     dao = CursoDAO()
     lista = dao.listar()
     return render_template('curso/lista.html', lista=lista)
+
 
 
 @app.route('/saudacao1/<nome>')
