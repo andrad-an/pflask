@@ -32,11 +32,6 @@ def contato():
     return render_template('dashboard/contato.html')
 
 
-# =======================================================
-# ROTAS DE ALUNOS
-# =======================================================
-
-@app.route('/aluno')
 @app.route('/alunos')
 def lista_alunos():
     dao = AlunoDAO()
@@ -44,21 +39,17 @@ def lista_alunos():
     return render_template('alunos/lista.html', lista=lista)
 
 @app.route('/alunos/form')
-@app.route('/aluno/form')
 def form_aluno():
     return render_template('alunos/form.html', aluno=None)
 
 @app.route('/alunos/editar/<int:id>')
-@app.route('/aluno/editar/<int:id>')
 def editar_aluno(id):
     dao = AlunoDAO()
     aluno = dao.buscar_por_id(id)
     return render_template('alunos/form.html', aluno=aluno)
 
 @app.route('/alunos/salvar/', methods=['POST'])
-@app.route('/aluno/salvar/<int:id>', methods=['POST'])
 @app.route('/alunos/salvar/<int:id>', methods=['POST'])
-@app.route('/aluno/salvar/<int:id>', methods=['POST'])
 def salvar_aluno(id=None):
     nome = request.form['nome']
     idade = request.form['idade']
@@ -74,7 +65,6 @@ def salvar_aluno(id=None):
 
     return redirect('/aluno')
 
-@app.route('/alunos/remover/<int:id>')
 @app.route('/alunos/remover/<int:id>')
 def remover_aluno(id):
     dao = AlunoDAO()
