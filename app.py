@@ -23,7 +23,7 @@ def sobre():
 def lista_alunos():
     dao = AlunoDAO()
     lista = dao.listar()
-    return render_template('aluno/lista.html', lista=lista)
+    return render_template('alunos/lista.html', lista=lista)
 
 @app.route('/professor')
 def lista_professor():
