@@ -1,8 +1,8 @@
 {% include 'dashboard/cabecalho.html' %}
 
-<h2 class="mb-4">Cadastrar Professor</h2>
+<h2 class="mb-4">{% if professor %}Editar{% else %}Cadastrar{% endif %} Professor</h2>
 
-<form action="/professor/salvar/" method="POST" class="w-50">
+<form action="/professor/salvar/{{ professor[0] if professor else '' }}" method="POST" class="w-50">
   <div class="mb-3">
     <label for="nome" class="form-label">Nome</label>
     <input type="text" class="form-control" id="nome" name="nome" value="{{ professor[1] if professor else '' }}" required>
