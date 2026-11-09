@@ -42,7 +42,7 @@ def form_aluno():
 def editar_aluno(id):
     dao = AlunoDAO()
     aluno = dao.buscar_por_id(id)
-    return render_template('alunos/form.html', aluno=aluno)
+    return render_template('alunos/form.html', alunos=lista_alunos)
 
 @app.route('/alunos/salvar/', methods=['POST'])
 @app.route('/alunos/salvar/<int:id>', methods=['POST'])
