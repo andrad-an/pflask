@@ -6,7 +6,7 @@
   <div class="mb-3">
     <label for="aluno_id" class="form-label">Aluno</label>
     <select name="aluno_id" id="aluno_id" class="form-select" required>
-      {% for aluno in lista_alunos %}
+      {% for aluno in lista_aluno %}
         <option value="{{ aluno[0] }}" {% if matricula and aluno[0] == matricula[1] %}selected{% endif %}>{{ aluno[1] }}</option>
       {% endfor %}
     </select>

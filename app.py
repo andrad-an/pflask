@@ -32,24 +32,24 @@ def contato():
     return render_template('dashboard/contato.html')
 
 
-@app.route('/alunos')
-def lista_alunos():
+@app.route('/aluno')
+def lista_aluno():
     dao = AlunoDAO()
     lista = dao.listar()
-    return render_template('alunos/lista.html', lista=lista)
+    return render_template('aluno/lista.html', lista=lista)
 
-@app.route('/alunos/form')
+@app.route('/aluno/form')
 def form_aluno():
-    return render_template('alunos/form.html', aluno=None)
+    return render_template('aluno/form.html', aluno=None)
 
-@app.route('/alunos/editar/<int:id>')
+@app.route('/aluno/editar/<int:id>')
 def editar_aluno(id):
     dao = AlunoDAO()
     aluno = dao.buscar_por_id(id)
-    return render_template('alunos/form.html', aluno=aluno)
+    return render_template('aluno/form.html', aluno=aluno)
 
-@app.route('/alunos/salvar/', methods=['POST'])
-@app.route('/alunos/salvar/<int:id>', methods=['POST'])
+@app.route('/aluno/salvar/', methods=['POST'])
+@app.route('/aluno/salvar/<int:id>', methods=['POST'])
 def salvar_aluno(id=None):
     nome = request.form['nome']
     idade = request.form['idade']
@@ -65,7 +65,7 @@ def salvar_aluno(id=None):
 
     return redirect('/aluno')
 
-@app.route('/alunos/remover/<int:id>')
+@app.route('/aluno/remover/<int:id>')
 def remover_aluno(id):
     dao = AlunoDAO()
     resultado = dao.remover(id)
@@ -73,7 +73,7 @@ def remover_aluno(id):
         flash("Registro removido com sucesso!", "success")
     else:
         flash(resultado["mensagem"], "danger")
-    return redirect('/alunos')
+    return redirect('/aluno')
 
 
 @app.route('/professor')
@@ -147,18 +147,18 @@ def lista_matricula():
 @app.route('/matricula/form')
 @app.route('/matriculas/form')
 def form_matricula():
-    lista_alunos = AlunoDAO().listar()
+    lista_aluno = AlunoDAO().listar()
     lista_turmas = TurmaDAO().listar()
-    return render_template('matricula/form.html', matricula=None, lista_alunos=lista_alunos, lista_turmas=lista_turmas)
+    return render_template('matricula/form.html', matricula=None, lista_aluno=lista_aluno, lista_turmas=lista_turmas)
 
 @app.route('/matricula/editar/<int:id>')
 @app.route('/matriculas/editar/<int:id>')
 def editar_matricula(id):
     dao = MatriculaDAO()
     mat = dao.buscar_por_id(id)
-    lista_alunos = AlunoDAO().listar()
+    lista_aluno = AlunoDAO().listar()
     lista_turmas = TurmaDAO().listar()
-    return render_template('matricula/form.html', matricula=mat, lista_alunos=lista_alunos, lista_turmas=lista_turmas)
+    return render_template('matricula/form.html', matricula=mat, lista_aluno=lista_aluno, lista_turmas=lista_turmas)
 
 @app.route('/matricula/salvar/', methods=['POST'])
 @app.route('/matricula/salvar/<int:id>', methods=['POST'])

@@ -4,7 +4,7 @@
 
 <div class="row">
   <div class="col-12">
-    <form action="/alunos/salvar/{{ alunos[0] if aluno else '' }}" method="POST" class="w-50">
+    <form action="/aluno/salvar/{{ aluno[0] if aluno else '' }}" method="POST" class="w-50">
       <div class="mb-3">
         <label for="nome" class="form-label">Nome</label>
         <input type="text" class="form-control" id="nome" name="nome" value="{{ aluno[1] if aluno else '' }}" required>
@@ -22,7 +22,7 @@
       
       <div class="d-flex gap-2">
         <button type="submit" class="btn btn-primary">Salvar</button>
-        <a href="/alunos" class="btn btn-secondary">Cancelar</a>
+        <a href="/aluno" class="btn btn-secondary">Cancelar</a>
       </div>
     </form>
   </div>
